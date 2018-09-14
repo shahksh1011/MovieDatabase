@@ -5,4 +5,8 @@
     <string name="edit_movie">Edit</string>
     <string name="sort_movie_year">Show List by year</string>
     <string name="sort_movie_rating">Show List by rating</string>
+    <string name="name">Name</string>
+    <string name="description">Description :</string>
+    <string name="genre">Genre :</string>
+    <string name="rating">Rating :</string>
 </resources>

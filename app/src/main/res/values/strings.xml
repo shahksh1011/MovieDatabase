@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MovieDatabaseApplication</string>
+    <string name="add_movie">Add Movie</string>
+    <string name="delete_movie">Delete Movie</string>
+    <string name="edit_movie">Edit</string>
+    <string name="sort_movie_year">Show List by year</string>
+    <string name="sort_movie_rating">Show List by rating</string>
 </resources>

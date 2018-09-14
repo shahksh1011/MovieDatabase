@@ -9,4 +9,6 @@
     <string name="description">Description :</string>
     <string name="genre">Genre :</string>
     <string name="rating">Rating :</string>
+    <string name="year">Year</string>
+    <string name="imdb">IMDB</string>
 </resources>

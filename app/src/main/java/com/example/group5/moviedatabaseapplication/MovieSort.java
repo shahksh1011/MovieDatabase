@@ -39,7 +39,9 @@ public class MovieSort extends AppCompatActivity {
         previous = findViewById(R.id.previousImageButton);
         next = findViewById(R.id.nextImageButton);
         finish = findViewById(R.id.finishButton);
-        descriptionViewText.setEnabled(false);
+        descriptionViewText.setKeyListener( null );
+        descriptionViewText.setFocusable( false );
+        descriptionViewText.setCursorVisible(false);
         movie_genre = getResources().getStringArray(R.array.movie_genre);
         if (getIntent() != null && getIntent().getExtras() != null) {
             String tag = getIntent().getExtras().getString(MainActivity.SHOW_LIST_TAG);

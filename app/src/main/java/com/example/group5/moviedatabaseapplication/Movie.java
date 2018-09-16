@@ -1,11 +1,11 @@
 package com.example.group5.moviedatabaseapplication;
 
-public class MovieList {
+public class Movie {
     private String name;
     private String description;
     private String movieImdb;
     private int movieGenre, movieYear, movieRating;
-    MovieList(String name, String description, String movieImdb, int movieGenre, int movieYear, int movieRating){
+    Movie(String name, String description, String movieImdb, int movieGenre, int movieYear, int movieRating){
         this.name = name;
         this.movieYear = movieYear;
         this.description = description;

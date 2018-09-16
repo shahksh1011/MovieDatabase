@@ -1,9 +1,12 @@
 package com.example.group5.moviedatabaseapplication;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
         Button moviesByYear = findViewById(R.id.sortMovieByYearButton);
         final Button moviesByRating = findViewById(R.id.sortMovieByRatingButton);
 
-        final ArrayAdapter<MovieList> adapter = new ArrayAdapter<MovieList>(getApplicationContext(),android.R.layout.simple_spinner_item, movieLists);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         addMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,8 +54,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                final ArrayAdapter<MovieList> adapter = new ArrayAdapter<MovieList>(getApplicationContext(),android.R.layout.simple_spinner_item, movieLists);
+                adapter.setDropDownViewResource(R.layout.list_row);
+
+                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("Hello",movieLists.get(which).getName());
+                    }
+                });
                 builder.create();
                 builder.show();
 //                Spinner movieSpinner = findViewById(R.id.movieListSpinner);

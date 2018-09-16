@@ -1,6 +1,5 @@
 package com.example.group5.moviedatabaseapplication;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -18,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Movie> movies = new ArrayList<Movie>();
 
     private Button addMovie,editMovie,deleteMovie,moviesByYear,moviesByRating;
-
+    static String MOVIES_KEY="MOVIES";
+    static String MOVIES_BY_YEAR_KEY="MOVIESBYYEAR";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +38,6 @@ public class MainActivity extends AppCompatActivity {
         deleteMovie = findViewById(R.id.deleteMovieButton);
         moviesByYear = findViewById(R.id.sortMovieByYearButton);
         moviesByRating = findViewById(R.id.sortMovieByRatingButton);
-//
-//        final ArrayAdapter<Movie> adapter = new ArrayAdapter<Movie>(getApplicationContext(),android.R.layout.simple_spinner_item, movies);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         addMovie.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +72,22 @@ public class MainActivity extends AppCompatActivity {
         moviesByYear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
+                Intent intent = new Intent("com.example.group5.moviedatabaseapplication.intent.action.VIEW");
+                intent.addCategory(Intent.CATEGORY_DEFAULT);
+                intent.putExtra(MOVIES_KEY,movies);
+                intent.putExtra(MOVIES_BY_YEAR_KEY,"YEAR");
+                startActivity(intent);
+            }
+        });
+
+        moviesByRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent("com.example.group5.moviedatabaseapplication.intent.action.VIEW");
+                intent.addCategory(Intent.CATEGORY_DEFAULT);
+                intent.putExtra(MOVIES_KEY,movies);
+                intent.putExtra(MOVIES_BY_YEAR_KEY,"RATING");
+                startActivity(intent);
             }
         });
     }

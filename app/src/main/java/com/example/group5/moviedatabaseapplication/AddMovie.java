@@ -13,9 +13,9 @@ import android.widget.Spinner;
 import java.io.Serializable;
 
 public class AddMovie extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("bc","mc");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_movie);
         final EditText name = findViewById(R.id.movieName);
@@ -24,8 +24,25 @@ public class AddMovie extends AppCompatActivity {
         final EditText year = findViewById(R.id.yearEdit);
         final SeekBar rating = findViewById(R.id.ratingSeekbar);
         final Spinner genreSpinner  = findViewById(R.id.genreSpinner);
+        Boolean flag =false;
+        int p = 0;
         Button addMovie = findViewById(R.id.saveAddMovieButton);
+        if (getIntent().getExtras()!=null){
 
+            Movie m = (Movie) getIntent().getExtras().get("MOVIES");
+            int position = (int) getIntent().getExtras().get("Position");
+            name.setText(m.getName());
+            description.setText(m.getDescription());
+            imdb.setText(m.getMovieImdb());
+            addMovie.setText("Save");
+            year.setText(m.getMovieYear().toString());
+            genreSpinner.setSelection(m.getMovieGenre());
+            rating.setProgress(m.getMovieRating());
+            Log.d("Position",String.valueOf(position) + m.getName());
+            flag = true;
+            p = position;
+        }
+        final int finalP = p;
         addMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,7 +51,7 @@ public class AddMovie extends AppCompatActivity {
                     new EditTextValidation(description, "Please Enter Description");
                     new EditTextValidation(imdb,"Please Enter Imdb");
                     new EditTextValidation(year, "Please Enter Year");
-                }
+                    }
                 else{
 
                     Log.d("Hola","woo");
@@ -42,15 +59,11 @@ public class AddMovie extends AppCompatActivity {
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     Movie m = new Movie(name.getText().toString(), description.getText().toString(), imdb.getText().toString(),  (int) genreSpinner.getSelectedItemId(), Integer.parseInt(year.getText().toString()), rating.getProgress());
                     i.putExtra("MOVIES", (Serializable) m);
+                    if (true)
+                        i.putExtra("Position", finalP);
                     startActivity(i);
-//                    i.putExtra("MOVIES",)
-
-
                 }
-
             }
         });
-
-
     }
 }

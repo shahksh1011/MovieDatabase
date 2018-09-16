@@ -13,7 +13,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="@string/moviesByYear"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -37,7 +36,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:text="Toy Story"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/titleTextView"
         app:layout_constraintTop_toTopOf="@+id/titleTextView" />
@@ -65,7 +63,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/descriptionTextView"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
+        android:hint="@string/descHint"/>
 
     <TextView
         android:id="@+id/genreTextView"
@@ -83,7 +82,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:text="Animation"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/genreTextView"
         app:layout_constraintTop_toTopOf="@+id/genreTextView" />
@@ -104,7 +102,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:text="5/5"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/ratingTextView"
         app:layout_constraintTop_toTopOf="@+id/ratingTextView" />
@@ -125,7 +122,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:text="2011"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/yearTextView"
         app:layout_constraintTop_toTopOf="@+id/yearTextView" />
@@ -146,7 +142,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="TextView"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/imdbTextView"
         app:layout_constraintTop_toBottomOf="@+id/imdbTextView" />
@@ -155,12 +150,12 @@
         android:id="@+id/firstImageButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="90dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/first"
-        android:scaleType="fitCenter"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/previousImageButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -175,7 +170,7 @@
         android:layout_marginStart="16dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/previous"
-        android:scaleType="fitCenter"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="@+id/firstImageButton"
         app:layout_constraintEnd_toStartOf="@+id/finishButton"
         app:layout_constraintStart_toEndOf="@+id/firstImageButton"
@@ -187,9 +182,10 @@
         android:id="@+id/finishButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:text="@string/finish"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/previousImageButton"
         app:layout_constraintEnd_toStartOf="@+id/nextImageButton"
         app:layout_constraintStart_toEndOf="@+id/previousImageButton"
         app:layout_constraintTop_toTopOf="@+id/previousImageButton" />
@@ -201,12 +197,11 @@
         android:layout_marginStart="16dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/next"
-        android:scaleType="fitCenter"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="@+id/previousImageButton"
         app:layout_constraintEnd_toStartOf="@+id/lastImageButton"
         app:layout_constraintStart_toEndOf="@+id/finishButton"
         app:layout_constraintTop_toTopOf="@+id/previousImageButton"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/next" />
 
     <ImageButton
@@ -217,7 +212,7 @@
         android:layout_marginStart="16dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/last"
-        android:scaleType="fitCenter"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="@+id/nextImageButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

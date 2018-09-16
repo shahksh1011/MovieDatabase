@@ -18,7 +18,7 @@ public class AddMovie extends AppCompatActivity {
         final EditText description = findViewById(R.id.movieDescription);
         final EditText imdb = findViewById(R.id.imdbEdit);
         final EditText year = findViewById(R.id.yearEdit);
-        Spinner genreSpinner  = findViewById(R.id.genreSpinner);
+        final Spinner genreSpinner  = findViewById(R.id.genreSpinner);
         Button addMovie = findViewById(R.id.saveAddMovieButton);
 
         addMovie.setOnClickListener(new View.OnClickListener() {
@@ -30,8 +30,11 @@ public class AddMovie extends AppCompatActivity {
                     new EditTextValidation(imdb,"Please Enter Imdb");
                     new EditTextValidation(year, "Please Enter Year");
                 }
-                else
+                else{
                     Log.d("Hola","woo");
+                    Log.d("Spinner", String.valueOf(genreSpinner.getSelectedItemId()));
+                }
+
             }
         });
 

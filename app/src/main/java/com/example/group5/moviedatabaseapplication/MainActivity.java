@@ -162,7 +162,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d("MOVIES", movies.get(0).getDescription());
+
         if (getIntent().getExtras() != null) {
+            Log.d("jellpo", String.valueOf(getIntent().getExtras().containsKey("MOVIES")));
             Log.d("UPDATE", String.valueOf(getIntent().getExtras().containsKey("Position")));
             Movie m = (Movie) getIntent().getExtras().get("MOVIES");
             if (getIntent().getExtras().containsKey("Position")) {
@@ -176,6 +178,8 @@ public class MainActivity extends AppCompatActivity {
                 movies.get(p).setMovieYear(m.getMovieYear());
             } else
                 movies.add(new Movie(m.getName(),m.getDescription(),m.getMovieImdb(),m.getMovieGenre(),m.getMovieYear(),m.getMovieRating()));
+            getIntent().removeExtra("MOVIES");
+            getIntent().removeExtra("Position");
 //            movies.add(new Movie("The adventure of Pluto Nash", "Movie is all about Others", "https://www.imdb.com/title/tt0180052/", 7, 2002, 1));
         }
     }

@@ -11,4 +11,15 @@
     <string name="rating">Rating :</string>
     <string name="year">Year</string>
     <string name="imdb">IMDB</string>
+
+    <string-array name="movie_genre">
+        <item>Action</item>
+        <item>Animation</item>
+        <item>Comedy</item>
+        <item>Documentary</item>
+        <item>Family</item>
+        <item>Horror</item>
+        <item>Crime</item>
+        <item>Others</item>
+    </string-array>
 </resources>

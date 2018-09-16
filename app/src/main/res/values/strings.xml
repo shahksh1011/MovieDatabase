@@ -6,11 +6,21 @@
     <string name="sort_movie_year">Show List by year</string>
     <string name="sort_movie_rating">Show List by rating</string>
     <string name="name">Name</string>
-    <string name="description">Description :</string>
-    <string name="genre">Genre :</string>
-    <string name="rating">Rating :</string>
+    <string name="description">Description:</string>
+    <string name="genre">Genre:</string>
+    <string name="rating">Rating:</string>
     <string name="year">Year</string>
     <string name="imdb">IMDB</string>
+    <string name="moviesByYear">Movies by Year</string>
+    <string name="moviesByRating">Movies by Rating</string>
+    <string name="title">Title:</string>
+    <string name="year_colon">Year:</string>
+    <string name="imdb_colon">IMDB:</string>
+    <string name="finish">Finish</string>
+    <string name="first">First</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="last">Last</string>
 
     <string-array name="movie_genre">
         <item>Action</item>

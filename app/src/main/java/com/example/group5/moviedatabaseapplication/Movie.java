@@ -1,6 +1,8 @@
 package com.example.group5.moviedatabaseapplication;
 
-public class Movie {
+import java.io.Serializable;
+
+public class Movie implements Serializable{
     private String name;
     private String description;
     private String movieImdb;

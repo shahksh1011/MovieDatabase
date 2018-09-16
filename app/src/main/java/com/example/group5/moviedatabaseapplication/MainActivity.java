@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.d("Hello",movies.get(which).getName());
+                        Intent i = new Intent(getApplicationContext(), AddMovie.class);
+                        i.putExtra("Position",which);
+                        i.putExtra("MOVIES", movies.get(which));
+                        startActivity(i);
                     }
                 });
                 builder.create();
@@ -82,8 +86,17 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MOVIES", movies.get(0).getDescription());
         if (getIntent().getExtras()!=null){
             Movie m = (Movie) getIntent().getExtras().get("MOVIES");
-            movies.add(m);
-//            Log.d("pintu", String.valueOf(m.getMovieYear()));
+            if (getIntent().getExtras().containsKey("Position")){
+                int p = getIntent().getExtras().getInt("Position");
+                movies.get(p).setName(m.getName());
+                movies.get(p).setDescription(m.getDescription());
+                movies.get(p).setMovieGenre(m.getMovieGenre());
+                movies.get(p).setMovieRating(m.getMovieRating());
+                movies.get(p).setMovieImdb(m.getMovieImdb());
+                movies.get(p).setMovieYear(m.getMovieYear());
+            }
+            else
+                movies.add(m);
         }
     }
 }

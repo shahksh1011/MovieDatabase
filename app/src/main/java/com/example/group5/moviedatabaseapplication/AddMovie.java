@@ -34,7 +34,7 @@ public class AddMovie extends AppCompatActivity {
         int p = 0;
         Button addMovie = findViewById(R.id.saveAddMovieButton);
         if (getIntent().getExtras() != null) {
-
+            this.setTitle(R.string.editMovie);
             Movie m = (Movie) getIntent().getExtras().get("MOVIES");
             int position = (int) getIntent().getExtras().get("Position");
             name.setText(m.getName());
@@ -79,8 +79,6 @@ public class AddMovie extends AppCompatActivity {
                     new EditTextValidation(year, "Please Enter Year");
                     new EditTextValidation("Enter valid Url", imdb,"The IMDB Url is invalid", getApplicationContext());
                 } else {
-
-                    Log.d("Hola", "woo");
                     Log.d("Spinner", String.valueOf(genreSpinner.getSelectedItemId()));
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     Movie m = new Movie(name.getText().toString(), description.getText().toString(), imdb.getText().toString(), (int) genreSpinner.getSelectedItemId(), Integer.parseInt(year.getText().toString()), rating.getProgress());

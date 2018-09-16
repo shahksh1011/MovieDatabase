@@ -164,12 +164,12 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MOVIES", movies.get(0).getDescription());
 
         if (getIntent().getExtras() != null) {
-            Log.d("jellpo", String.valueOf(getIntent().getExtras().containsKey("MOVIES")));
+            Log.d("Movies", String.valueOf(getIntent().getExtras().containsKey("MOVIES")));
             Log.d("UPDATE", String.valueOf(getIntent().getExtras().containsKey("Position")));
             Movie m = (Movie) getIntent().getExtras().get("MOVIES");
             if (getIntent().getExtras().containsKey("Position")) {
                 int p = getIntent().getExtras().getInt("Position");
-                Log.d("UPDATE", String.valueOf(getIntent().getExtras().containsKey("Position")));
+                Log.d("Update", String.valueOf(getIntent().getExtras().containsKey("Position")));
                 movies.get(p).setName(m.getName());
                 movies.get(p).setDescription(m.getDescription());
                 movies.get(p).setMovieGenre(m.getMovieGenre());

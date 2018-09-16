@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MovieDatabaseApplication</string>
+    <string name="app_name">My Favorite Movies</string>
     <string name="add_movie">Add Movie</string>
     <string name="delete_movie">Delete Movie</string>
     <string name="edit_movie">Edit</string>
@@ -21,7 +21,7 @@
     <string name="previous">Previous</string>
     <string name="next">Next</string>
     <string name="last">Last</string>
-    <string name="descHint">Description</string>
+    <string name="descHint"> </string>
 
     <string-array name="movie_genre">
         <item>Action</item>

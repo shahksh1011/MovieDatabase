@@ -2,6 +2,8 @@ package com.example.group5.moviedatabaseapplication;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Button addMovie, editMovie, deleteMovie, moviesByYear, moviesByRating;
     static String MOVIES_KEY = "MOVIES";
     static String SHOW_LIST_TAG = "TAG";
+    static ArrayAdapter<Movie> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +54,8 @@ public class MainActivity extends AppCompatActivity {
         editMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                final ArrayAdapter<Movie> adapter = new ArrayAdapter<Movie>(getApplicationContext(), android.R.layout.simple_spinner_item, movies);
+                adapter = new ArrayAdapter<Movie>(getApplicationContext(), android.R.layout.simple_spinner_item, movies);
                 adapter.setDropDownViewResource(R.layout.list_row);
                 builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
                     @Override
@@ -64,8 +67,17 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(i);
                     }
                 });
-                builder.create();
-                builder.show();
+                builder.setTitle("Pick a  Movie");
+                // Create the alert dialog
+                AlertDialog dialog = builder.create();
+                // Get the alert dialog ListView instance
+                ListView listView = dialog.getListView();
+                // Set the divider color of alert dialog list view
+                listView.setDivider(new ColorDrawable(Color.BLUE));
+                // Set the divider height of alert dialog list view
+                listView.setDividerHeight(5);
+                // Finally, display the alert dialog
+                dialog.show();
             }
         });
 
@@ -88,6 +100,33 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(MOVIES_KEY, movies);
                 intent.putExtra(SHOW_LIST_TAG, "RATING");
                 startActivity(intent);
+            }
+        });
+
+        deleteMovie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                adapter = new ArrayAdapter<Movie>(getApplicationContext(), android.R.layout.simple_spinner_item, movies);
+                adapter.setDropDownViewResource(R.layout.list_row);
+                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("Delete", movies.get(which).getName());
+                        movies.remove(which);
+                    }
+                });
+                builder.setTitle("Pick a  Movie");
+                // Create the alert dialog
+                AlertDialog dialog = builder.create();
+                // Get the alert dialog ListView instance
+                ListView listView = dialog.getListView();
+                // Set the divider color of alert dialog list view
+                listView.setDivider(new ColorDrawable(Color.BLUE));
+                // Set the divider height of alert dialog list view
+                listView.setDividerHeight(5);
+                // Finally, display the alert dialog
+                dialog.show();
             }
         });
     }

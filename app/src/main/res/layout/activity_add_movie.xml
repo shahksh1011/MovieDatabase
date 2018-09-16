@@ -28,6 +28,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/description"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movieName" />
 
@@ -39,7 +40,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint=" "
+        android:gravity="top"
+        android:hint="@string/descHint"
         android:inputType="textMultiLine"
         android:selectAllOnFocus="false"
         android:singleLine="false"
@@ -92,6 +94,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/rating"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/ratingSeekbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ratingSeekbar" />
@@ -128,13 +131,12 @@
         android:id="@+id/saveAddMovieButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/add_movie"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imdbEdit" />
 </android.support.constraint.ConstraintLayout>

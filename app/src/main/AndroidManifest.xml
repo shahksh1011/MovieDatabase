@@ -17,6 +17,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddMovie"></activity>
+        <activity android:name=".MovieSort">
+            <intent-filter>
+                <action android:name="com.example.group5.moviedatabaseapplication.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

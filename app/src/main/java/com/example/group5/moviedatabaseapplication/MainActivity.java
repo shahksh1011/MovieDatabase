@@ -76,7 +76,9 @@ public class MainActivity extends AppCompatActivity {
         moviesByYear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
+                Intent intent = new Intent("com.example.group5.moviedatabaseapplication.intent.action.VIEW");
+                intent.addCategory(Intent.CATEGORY_DEFAULT);
+                startActivity(intent);
             }
         });
 

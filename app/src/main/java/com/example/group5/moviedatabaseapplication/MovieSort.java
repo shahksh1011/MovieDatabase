@@ -106,6 +106,13 @@ public class MovieSort extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("moviesSort","Inside OnPause");
+        i = 0;
+    }
+
     public void Display() {
         Movie movie = movieArrayList.get(i);
         if (movie != null) {

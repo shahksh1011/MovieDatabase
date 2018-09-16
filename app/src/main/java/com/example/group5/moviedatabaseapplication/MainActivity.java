@@ -4,14 +4,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -55,7 +60,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                adapter = new ArrayAdapter<Movie>(getApplicationContext(), android.R.layout.simple_spinner_item, movies);
+                adapter = new ArrayAdapter<Movie>(getApplicationContext(), android.R.layout.simple_spinner_item, movies) {
+                    @NonNull
+                    @Override
+                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                        // Cast list view each item as text view
+                        TextView text_view = (TextView) super.getView(position, convertView, parent);
+                        // Set text size
+                        text_view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+                        // Finally, return the modified items
+                        return text_view;
+                    }
+                };
                 adapter.setDropDownViewResource(R.layout.list_row);
                 builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
                     @Override
@@ -107,7 +123,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                adapter = new ArrayAdapter<Movie>(getApplicationContext(), android.R.layout.simple_spinner_item, movies);
+                adapter = new ArrayAdapter<Movie>(getApplicationContext(), android.R.layout.simple_spinner_item, movies) {
+                    @NonNull
+                    @Override
+                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                        // Cast list view each item as text view
+                        TextView text_view = (TextView) super.getView(position, convertView, parent);
+                        // Set text size
+                        text_view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+                        // Finally, return the modified items
+                        return text_view;
+                    }
+                };
                 adapter.setDropDownViewResource(R.layout.list_row);
                 builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
                     @Override

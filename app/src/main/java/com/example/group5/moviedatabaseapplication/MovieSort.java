@@ -16,10 +16,10 @@ import java.util.Comparator;
 
 public class MovieSort extends AppCompatActivity {
 
-    private TextView sortHeaderTextView,titleValueTextView,genreValueTextView,ratingValueTextView,yearValueTextView,imdbValueTextView;
+    private TextView sortHeaderTextView, titleValueTextView, genreValueTextView, ratingValueTextView, yearValueTextView, imdbValueTextView;
     private EditText descriptionViewText;
     private String[] movie_genre;
-    private ImageButton first,last,previous,next;
+    private ImageButton first, last, previous, next;
     private Button finish;
     private ArrayList<Movie> movieArrayList;
     private static int i = 0;
@@ -41,21 +41,21 @@ public class MovieSort extends AppCompatActivity {
         finish = findViewById(R.id.finishButton);
         descriptionViewText.setEnabled(false);
         movie_genre = getResources().getStringArray(R.array.movie_genre);
-        if (getIntent()!=null&&getIntent().getExtras()!=null){
-            String tag = getIntent().getExtras().getString(MainActivity.MOVIES_BY_YEAR_KEY);
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            String tag = getIntent().getExtras().getString(MainActivity.SHOW_LIST_TAG);
             movieArrayList = (ArrayList<Movie>) getIntent().getSerializableExtra(MainActivity.MOVIES_KEY);
-            Log.d("moviesSort",movieArrayList.toString());
-            Log.d("moviesSort","tag: "+tag);
+            Log.d("moviesSort", movieArrayList.toString());
+            Log.d("moviesSort", "tag: " + tag);
             Movie movie = null;
-            if ("YEAR".equalsIgnoreCase(tag)){
+            if ("YEAR".equalsIgnoreCase(tag)) {
                 this.setTitle(R.string.moviesByYear);
                 sortHeaderTextView.setText(R.string.moviesByYear);
-                Collections.sort(movieArrayList,new CompareYear());
-            }else if ("RATING".equalsIgnoreCase(tag)){
+                Collections.sort(movieArrayList, new CompareYear());
+            } else if ("RATING".equalsIgnoreCase(tag)) {
                 this.setTitle(R.string.moviesByRating);
                 sortHeaderTextView.setText(R.string.moviesByRating);
-                Collections.sort(movieArrayList,new CompareRating());
-            }else {
+                Collections.sort(movieArrayList, new CompareRating());
+            } else {
                 Toast.makeText(sortHeaderTextView.getContext(), "Invalid Input", Toast.LENGTH_LONG).show();
             }
             Display();
@@ -72,7 +72,7 @@ public class MovieSort extends AppCompatActivity {
         last.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i = movieArrayList.size()-1;
+                i = movieArrayList.size() - 1;
                 Display();
             }
         });
@@ -80,7 +80,7 @@ public class MovieSort extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (i<movieArrayList.size()-1){
+                if (i < movieArrayList.size() - 1) {
                     ++i;
                     Display();
                 }
@@ -90,7 +90,7 @@ public class MovieSort extends AppCompatActivity {
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (i>0){
+                if (i > 0) {
                     --i;
                     Display();
                 }
@@ -100,17 +100,18 @@ public class MovieSort extends AppCompatActivity {
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                i = 0;
                 finish();
             }
         });
     }
 
-    public void Display(){
+    public void Display() {
         Movie movie = movieArrayList.get(i);
-        if (movie!=null){
+        if (movie != null) {
             titleValueTextView.setText(movie.getName());
             genreValueTextView.setText(movie_genre[movie.getMovieGenre()]);
-            ratingValueTextView.setText(movie.getMovieRating().toString()+"/5");
+            ratingValueTextView.setText(movie.getMovieRating().toString() + "/5");
             yearValueTextView.setText(movie.getMovieYear().toString());
             imdbValueTextView.setText(movie.getMovieImdb());
             descriptionViewText.setText(movie.getDescription());
@@ -118,18 +119,18 @@ public class MovieSort extends AppCompatActivity {
     }
 }
 
-class CompareYear implements Comparator<Movie>{
+class CompareYear implements Comparator<Movie> {
 
     @Override
     public int compare(Movie o1, Movie o2) {
-        return o1.getMovieYear()-o2.getMovieYear();
+        return o1.getMovieYear() - o2.getMovieYear();
     }
 }
 
-class CompareRating implements Comparator<Movie>{
+class CompareRating implements Comparator<Movie> {
 
     @Override
     public int compare(Movie o1, Movie o2) {
-        return o2.getMovieRating()-o1.getMovieRating();
+        return o2.getMovieRating() - o1.getMovieRating();
     }
 }

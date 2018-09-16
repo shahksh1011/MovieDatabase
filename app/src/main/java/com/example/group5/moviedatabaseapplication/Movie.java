@@ -2,12 +2,13 @@ package com.example.group5.moviedatabaseapplication;
 
 import java.io.Serializable;
 
-public class Movie implements Serializable{
+public class Movie implements Serializable {
     private String name;
     private String description;
     private String movieImdb;
     private Integer movieGenre, movieYear, movieRating;
-    Movie(String name, String description, String movieImdb, int movieGenre, int movieYear, int movieRating){
+
+    Movie(String name, String description, String movieImdb, int movieGenre, int movieYear, int movieRating) {
         this.name = name;
         this.movieYear = movieYear;
         this.description = description;

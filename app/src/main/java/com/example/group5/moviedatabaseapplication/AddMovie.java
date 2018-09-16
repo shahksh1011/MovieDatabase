@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class AddMovie extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("bc","mc");
+        Log.d("bc", "mc");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_movie);
         final EditText name = findViewById(R.id.movieName);
@@ -23,11 +23,11 @@ public class AddMovie extends AppCompatActivity {
         final EditText imdb = findViewById(R.id.imdbEdit);
         final EditText year = findViewById(R.id.yearEdit);
         final SeekBar rating = findViewById(R.id.ratingSeekbar);
-        final Spinner genreSpinner  = findViewById(R.id.genreSpinner);
-        Boolean flag =false;
+        final Spinner genreSpinner = findViewById(R.id.genreSpinner);
+        Boolean flag = false;
         int p = 0;
         Button addMovie = findViewById(R.id.saveAddMovieButton);
-        if (getIntent().getExtras()!=null){
+        if (getIntent().getExtras() != null) {
 
             Movie m = (Movie) getIntent().getExtras().get("MOVIES");
             int position = (int) getIntent().getExtras().get("Position");
@@ -38,7 +38,7 @@ public class AddMovie extends AppCompatActivity {
             year.setText(m.getMovieYear().toString());
             genreSpinner.setSelection(m.getMovieGenre());
             rating.setProgress(m.getMovieRating());
-            Log.d("Position",String.valueOf(position) + m.getName());
+            Log.d("Position", String.valueOf(position) + m.getName());
             flag = true;
             p = position;
         }
@@ -46,18 +46,17 @@ public class AddMovie extends AppCompatActivity {
         addMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (name.getText().toString().matches("") | description.getText().toString().matches("") | imdb.getText().toString().matches("") | year.getText().toString().matches("")){
-                    new EditTextValidation(name,"Please Enter Name");
+                if (name.getText().toString().matches("") | description.getText().toString().matches("") | imdb.getText().toString().matches("") | year.getText().toString().matches("")) {
+                    new EditTextValidation(name, "Please Enter Name");
                     new EditTextValidation(description, "Please Enter Description");
-                    new EditTextValidation(imdb,"Please Enter Imdb");
+                    new EditTextValidation(imdb, "Please Enter Imdb");
                     new EditTextValidation(year, "Please Enter Year");
-                    }
-                else{
+                } else {
 
-                    Log.d("Hola","woo");
+                    Log.d("Hola", "woo");
                     Log.d("Spinner", String.valueOf(genreSpinner.getSelectedItemId()));
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    Movie m = new Movie(name.getText().toString(), description.getText().toString(), imdb.getText().toString(),  (int) genreSpinner.getSelectedItemId(), Integer.parseInt(year.getText().toString()), rating.getProgress());
+                    Movie m = new Movie(name.getText().toString(), description.getText().toString(), imdb.getText().toString(), (int) genreSpinner.getSelectedItemId(), Integer.parseInt(year.getText().toString()), rating.getProgress());
                     i.putExtra("MOVIES", (Serializable) m);
                     if (true)
                         i.putExtra("Position", finalP);

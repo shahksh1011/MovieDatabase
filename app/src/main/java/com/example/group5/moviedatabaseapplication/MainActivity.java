@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Movie> movies = new ArrayList<Movie>();
 
-    private Button addMovie,editMovie,deleteMovie,moviesByYear,moviesByRating;
-    static String MOVIES_KEY="MOVIES";
-    static String MOVIES_BY_YEAR_KEY="MOVIESBYYEAR";
+    private Button addMovie, editMovie, deleteMovie, moviesByYear, moviesByRating;
+    static String MOVIES_KEY = "MOVIES";
+    static String SHOW_LIST_TAG = "TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +52,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                final ArrayAdapter<Movie> adapter = new ArrayAdapter<Movie>(getApplicationContext(),android.R.layout.simple_spinner_item, movies);
+                final ArrayAdapter<Movie> adapter = new ArrayAdapter<Movie>(getApplicationContext(), android.R.layout.simple_spinner_item, movies);
                 adapter.setDropDownViewResource(R.layout.list_row);
                 builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d("Hello",movies.get(which).getName());
+                        Log.d("Hello", movies.get(which).getName());
                         Intent i = new Intent(getApplicationContext(), AddMovie.class);
-                        i.putExtra("Position",which);
+                        i.putExtra("Position", which);
                         i.putExtra("MOVIES", movies.get(which));
                         startActivity(i);
                     }
@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent("com.example.group5.moviedatabaseapplication.intent.action.VIEW");
                 intent.addCategory(Intent.CATEGORY_DEFAULT);
-                intent.putExtra(MOVIES_KEY,movies);
-                intent.putExtra(MOVIES_BY_YEAR_KEY,"YEAR");
+                intent.putExtra(MOVIES_KEY, movies);
+                intent.putExtra(SHOW_LIST_TAG, "YEAR");
                 startActivity(intent);
             }
         });
@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent("com.example.group5.moviedatabaseapplication.intent.action.VIEW");
                 intent.addCategory(Intent.CATEGORY_DEFAULT);
-                intent.putExtra(MOVIES_KEY,movies);
-                intent.putExtra(MOVIES_BY_YEAR_KEY,"RATING");
+                intent.putExtra(MOVIES_KEY, movies);
+                intent.putExtra(SHOW_LIST_TAG, "RATING");
                 startActivity(intent);
             }
         });
@@ -96,9 +96,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d("MOVIES", movies.get(0).getDescription());
-        if (getIntent().getExtras()!=null){
+        if (getIntent().getExtras() != null) {
             Movie m = (Movie) getIntent().getExtras().get("MOVIES");
-            if (getIntent().getExtras().containsKey("Position")){
+            if (getIntent().getExtras().containsKey("Position")) {
                 int p = getIntent().getExtras().getInt("Position");
                 movies.get(p).setName(m.getName());
                 movies.get(p).setDescription(m.getDescription());
@@ -106,8 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 movies.get(p).setMovieRating(m.getMovieRating());
                 movies.get(p).setMovieImdb(m.getMovieImdb());
                 movies.get(p).setMovieYear(m.getMovieYear());
-            }
-            else
+            } else
                 movies.add(m);
         }
     }

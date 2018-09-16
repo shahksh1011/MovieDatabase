@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<Movie> movies = new ArrayList<Movie>();
+    public ArrayList<Movie> movies = new ArrayList<Movie>();
 
     private Button addMovie, editMovie, deleteMovie, moviesByYear, moviesByRating;
     static String MOVIES_KEY = "MOVIES";
@@ -163,9 +163,11 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         Log.d("MOVIES", movies.get(0).getDescription());
         if (getIntent().getExtras() != null) {
+            Log.d("UPDATE", String.valueOf(getIntent().getExtras().containsKey("Position")));
             Movie m = (Movie) getIntent().getExtras().get("MOVIES");
             if (getIntent().getExtras().containsKey("Position")) {
                 int p = getIntent().getExtras().getInt("Position");
+                Log.d("UPDATE", String.valueOf(getIntent().getExtras().containsKey("Position")));
                 movies.get(p).setName(m.getName());
                 movies.get(p).setDescription(m.getDescription());
                 movies.get(p).setMovieGenre(m.getMovieGenre());
@@ -173,7 +175,8 @@ public class MainActivity extends AppCompatActivity {
                 movies.get(p).setMovieImdb(m.getMovieImdb());
                 movies.get(p).setMovieYear(m.getMovieYear());
             } else
-                movies.add(m);
+                movies.add(new Movie(m.getName(),m.getDescription(),m.getMovieImdb(),m.getMovieGenre(),m.getMovieYear(),m.getMovieRating()));
+//            movies.add(new Movie("The adventure of Pluto Nash", "Movie is all about Others", "https://www.imdb.com/title/tt0180052/", 7, 2002, 1));
         }
     }
 }

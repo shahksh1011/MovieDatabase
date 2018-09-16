@@ -47,7 +47,7 @@ public class AddMovie extends AppCompatActivity {
             Log.d("Position", String.valueOf(position) + m.getName());
             seekbarValue.setText(String.valueOf(rating.getProgress()));
             flag = true;
-            p = position;
+            p = position-1;
         }
         rating.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -90,5 +90,10 @@ public class AddMovie extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 }

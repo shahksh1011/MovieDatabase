@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Movie> movies = new ArrayList<Movie>();
+
     private Button addMovie,editMovie,deleteMovie,moviesByYear,moviesByRating;
 
 
@@ -37,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
         deleteMovie = findViewById(R.id.deleteMovieButton);
         moviesByYear = findViewById(R.id.sortMovieByYearButton);
         moviesByRating = findViewById(R.id.sortMovieByRatingButton);
-
-        final ArrayAdapter<Movie> adapter = new ArrayAdapter<Movie>(getApplicationContext(),android.R.layout.simple_spinner_item, movies);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        final ArrayAdapter<Movie> adapter = new ArrayAdapter<Movie>(getApplicationContext(),android.R.layout.simple_spinner_item, movies);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         addMovie.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,12 +54,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 final ArrayAdapter<Movie> adapter = new ArrayAdapter<Movie>(getApplicationContext(),android.R.layout.simple_spinner_item, movies);
                 adapter.setDropDownViewResource(R.layout.list_row);
-
                 builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -67,9 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 });
                 builder.create();
                 builder.show();
-//                Spinner movieSpinner = findViewById(R.id.movieListSpinner);
-//                movieSpinner.setAdapter(adapter);
-//                movieSpinner.setVisibility(View.VISIBLE);
             }
         });
 
@@ -81,7 +76,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("MOVIES", movies.get(0).getDescription());
+        if (getIntent().getExtras()!=null){
+            Movie m = (Movie) getIntent().getExtras().get("MOVIES");
+            movies.add(m);
+//            Log.d("pintu", String.valueOf(m.getMovieYear()));
+        }
     }
 }

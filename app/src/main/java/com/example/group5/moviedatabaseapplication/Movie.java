@@ -6,7 +6,7 @@ public class Movie implements Serializable{
     private String name;
     private String description;
     private String movieImdb;
-    private int movieGenre, movieYear, movieRating;
+    private Integer movieGenre, movieYear, movieRating;
     Movie(String name, String description, String movieImdb, int movieGenre, int movieYear, int movieRating){
         this.name = name;
         this.movieYear = movieYear;
@@ -46,30 +46,27 @@ public class Movie implements Serializable{
         this.movieImdb = movieImdb;
     }
 
-    public int getMovieGenre() {
+    public Integer getMovieGenre() {
         return movieGenre;
     }
 
-    public void setMovieGenre(int movieGenre) {
+    public void setMovieGenre(Integer movieGenre) {
         this.movieGenre = movieGenre;
     }
 
-    public int getMovieYear() {
+    public Integer getMovieYear() {
         return movieYear;
     }
 
-    public void setMovieYear(int movieYear) {
+    public void setMovieYear(Integer movieYear) {
         this.movieYear = movieYear;
     }
 
-    public int getMovieRating() {
+    public Integer getMovieRating() {
         return movieRating;
     }
 
-    public void setMovieRating(int movieRating) {
+    public void setMovieRating(Integer movieRating) {
         this.movieRating = movieRating;
     }
-
-
-
 }

@@ -70,13 +70,14 @@ public class AddMovie extends AppCompatActivity {
         addMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (name.getText().toString().matches("") | name.getText().toString().length()>50 | description.getText().toString().length()>1000 | description.getText().toString().matches("") | imdb.getText().toString().matches("") | year.getText().toString().matches("") | !URLUtil.isValidUrl(imdb.getText().toString())) {
+                if (name.getText().toString().matches("") | name.getText().toString().length()>50 | description.getText().toString().length()>1000 | description.getText().toString().matches("") | imdb.getText().toString().matches("") | year.getText().toString().matches("") | Integer.parseInt(year.getText().toString()) < 1889 | Integer.parseInt(year.getText().toString()) > 2019 | !URLUtil.isValidUrl(imdb.getText().toString())) {
                     new EditTextValidation(name,50,"Exceeded 50 character Limit", "Movie name can only have upto 50 characters", getApplicationContext());
                     new EditTextValidation(description,1000,"Exceeded 1000 character Limit", "Movie Description can only have upto 1000 characters", getApplicationContext());
                     new EditTextValidation(name, "Please Enter Name");
                     new EditTextValidation(description, "Please Enter Description");
                     new EditTextValidation(imdb, "Please Enter Imdb");
                     new EditTextValidation(year, "Please Enter Year");
+                    new EditTextValidation(year, "First movie was made in 1889", "You have taken Welcome to the future literally", 1889, 2019, getApplicationContext());
                     new EditTextValidation("Enter valid Url", imdb,"The IMDB Url is invalid", getApplicationContext());
                 } else {
                     Log.d("Spinner", String.valueOf(genreSpinner.getSelectedItemId()));

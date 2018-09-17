@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MOVIES", movies.get(0).getDescription());
 
         if (getIntent().getExtras() != null) {
-            Log.d("Movies", String.valueOf(getIntent().getExtras().containsKey("MOVIES")));
+            Log.d("Moviessize", String.valueOf(movies.size()));
             Log.d("UPDATE", String.valueOf(getIntent().getExtras().containsKey("Position")));
             Movie m = (Movie) getIntent().getExtras().get("MOVIES");
             if (getIntent().getExtras().containsKey("Position")) {
@@ -176,11 +176,31 @@ public class MainActivity extends AppCompatActivity {
                 movies.get(p).setMovieRating(m.getMovieRating());
                 movies.get(p).setMovieImdb(m.getMovieImdb());
                 movies.get(p).setMovieYear(m.getMovieYear());
-            } else
+                synchronized (movies){
+                    movies.notifyAll();
+
+                }
+
+//                adapter.notifyDataSetChanged();
+//                adapter.notifyDataSetChanged();
+            } else{
+
                 movies.add(new Movie(m.getName(),m.getDescription(),m.getMovieImdb(),m.getMovieGenre(),m.getMovieYear(),m.getMovieRating()));
+                if (movies.size() > 8)
+                    Log.d("MovieSizesssss", movies.get(8).getName());
+                Log.d("MovieSize", String.valueOf(movies.size()));
+                synchronized (movies){
+                    movies.notifyAll();
+
+                }
+//                adapter.notifyDataSetChanged();
+            }
+
             getIntent().removeExtra("MOVIES");
             getIntent().removeExtra("Position");
 //            movies.add(new Movie("The adventure of Pluto Nash", "Movie is all about Others", "https://www.imdb.com/title/tt0180052/", 7, 2002, 1));
         }
     }
+
+
 }

@@ -52,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddMovie.class);
-                startActivity(intent);
+                startActivityForResult(intent, 2);
+
+
             }
         });
 
@@ -80,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
                         Intent i = new Intent(getApplicationContext(), AddMovie.class);
                         i.putExtra("Position", which);
                         i.putExtra("MOVIES", movies.get(which));
-                        startActivity(i);
+//                        startActivity(i);
+                        startActivityForResult(i, 3);
                     }
                 });
                 builder.setTitle("Pick a  Movie");
@@ -158,49 +161,33 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("MOVIES", movies.get(0).getDescription());
-
-        if (getIntent().getExtras() != null) {
-            Log.d("Moviessize", String.valueOf(movies.size()));
-            Log.d("UPDATE", String.valueOf(getIntent().getExtras().containsKey("Position")));
-            Movie m = (Movie) getIntent().getExtras().get("MOVIES");
-            if (getIntent().getExtras().containsKey("Position")) {
-                int p = getIntent().getExtras().getInt("Position");
-                Log.d("Update", String.valueOf(getIntent().getExtras().containsKey("Position")));
-                movies.get(p).setName(m.getName());
-                movies.get(p).setDescription(m.getDescription());
-                movies.get(p).setMovieGenre(m.getMovieGenre());
-                movies.get(p).setMovieRating(m.getMovieRating());
-                movies.get(p).setMovieImdb(m.getMovieImdb());
-                movies.get(p).setMovieYear(m.getMovieYear());
-                synchronized (movies){
-                    movies.notifyAll();
-
-                }
-
-//                adapter.notifyDataSetChanged();
-//                adapter.notifyDataSetChanged();
-            } else{
-
-                movies.add(new Movie(m.getName(),m.getDescription(),m.getMovieImdb(),m.getMovieGenre(),m.getMovieYear(),m.getMovieRating()));
-                if (movies.size() > 8)
-                    Log.d("MovieSizesssss", movies.get(8).getName());
-                Log.d("MovieSize", String.valueOf(movies.size()));
-                synchronized (movies){
-                    movies.notifyAll();
-
-                }
-//                adapter.notifyDataSetChanged();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 2) {
+            if (data.getExtras() != null) {
+                movies.add((Movie) data.getExtras().get("MOVIES"));
+                Log.d("hellp", "hellp");
             }
+        } else if (resultCode == 3) {
+            if (data.getExtras() != null) {
+                Movie answer = (Movie) data.getExtras().get("MOVIES");
+                Log.d("hellpp", answer.getName());
+                movies.get(data.getExtras().getInt("Position")).setName(answer.getName());
+                movies.get(data.getExtras().getInt("Position")).setMovieYear(answer.getMovieYear());
+                movies.get(data.getExtras().getInt("Position")).setMovieRating(answer.getMovieRating());
+                movies.get(data.getExtras().getInt("Position")).setMovieImdb(answer.getMovieImdb());
+                movies.get(data.getExtras().getInt("Position")).setMovieGenre(answer.getMovieGenre());
+                movies.get(data.getExtras().getInt("Position")).setDescription(answer.getDescription());
 
-            getIntent().removeExtra("MOVIES");
-            getIntent().removeExtra("Position");
-//            movies.add(new Movie("The adventure of Pluto Nash", "Movie is all about Others", "https://www.imdb.com/title/tt0180052/", 7, 2002, 1));
+//                }
+
+            }
         }
-    }
 
+        getIntent().removeExtra("MOVIES");
+        getIntent().removeExtra("Position");
+    }
 
 }

@@ -47,7 +47,7 @@ public class AddMovie extends AppCompatActivity {
             Log.d("Position", String.valueOf(position) + m.getName());
             seekbarValue.setText(String.valueOf(rating.getProgress()));
             flag = true;
-            p = position-1;
+            p = position;
         }
         rating.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -84,14 +84,16 @@ public class AddMovie extends AppCompatActivity {
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     Movie m = new Movie(name.getText().toString(), description.getText().toString(), imdb.getText().toString(), (int) genreSpinner.getSelectedItemId(), Integer.parseInt(year.getText().toString()), rating.getProgress());
                     i.putExtra("MOVIES", (Serializable) m);
-                    if (finalFlag)
+                    if (finalFlag){
                         i.putExtra("Position", finalP);
-                    startActivity(i);
+                        setResult(3,i);
+                    } else
+                        setResult(2,i);
+                    finish();
                 }
             }
         });
     }
-
     @Override
     protected void onRestart() {
         super.onRestart();

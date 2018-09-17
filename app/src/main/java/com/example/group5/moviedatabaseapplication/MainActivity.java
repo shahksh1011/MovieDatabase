@@ -190,4 +190,8 @@ public class MainActivity extends AppCompatActivity {
         getIntent().removeExtra("Position");
     }
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+    }
 }

@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -53,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddMovie.class);
                 startActivityForResult(intent, 2);
-
-
             }
         });
 
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
                         Intent i = new Intent(getApplicationContext(), AddMovie.class);
                         i.putExtra("Position", which);
                         i.putExtra("MOVIES", movies.get(which));
-//                        startActivity(i);
                         startActivityForResult(i, 3);
                     }
                 });
@@ -103,22 +101,30 @@ public class MainActivity extends AppCompatActivity {
         moviesByYear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent("com.example.group5.moviedatabaseapplication.intent.action.VIEW");
-                intent.addCategory(Intent.CATEGORY_DEFAULT);
-                intent.putExtra(MOVIES_KEY, movies);
-                intent.putExtra(SHOW_LIST_TAG, "YEAR");
-                startActivity(intent);
+                if (movies.size() > 0) {
+                    Intent intent = new Intent("com.example.group5.moviedatabaseapplication.intent.action.VIEW");
+                    intent.addCategory(Intent.CATEGORY_DEFAULT);
+                    intent.putExtra(MOVIES_KEY, movies);
+                    intent.putExtra(SHOW_LIST_TAG, "YEAR");
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(v.getContext(), "No Movie present in the database!", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         moviesByRating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent("com.example.group5.moviedatabaseapplication.intent.action.VIEW");
-                intent.addCategory(Intent.CATEGORY_DEFAULT);
-                intent.putExtra(MOVIES_KEY, movies);
-                intent.putExtra(SHOW_LIST_TAG, "RATING");
-                startActivity(intent);
+                if (movies.size() > 0) {
+                    Intent intent = new Intent("com.example.group5.moviedatabaseapplication.intent.action.VIEW");
+                    intent.addCategory(Intent.CATEGORY_DEFAULT);
+                    intent.putExtra(MOVIES_KEY, movies);
+                    intent.putExtra(SHOW_LIST_TAG, "RATING");
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(v.getContext(), "No Movie present in the database!", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -180,14 +186,9 @@ public class MainActivity extends AppCompatActivity {
                 movies.get(data.getExtras().getInt("Position")).setMovieImdb(answer.getMovieImdb());
                 movies.get(data.getExtras().getInt("Position")).setMovieGenre(answer.getMovieGenre());
                 movies.get(data.getExtras().getInt("Position")).setDescription(answer.getDescription());
-
-//                }
-
             }
         }
-
         getIntent().removeExtra("MOVIES");
         getIntent().removeExtra("Position");
     }
-
 }

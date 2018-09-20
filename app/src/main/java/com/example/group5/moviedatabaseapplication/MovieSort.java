@@ -39,8 +39,8 @@ public class MovieSort extends AppCompatActivity {
         previous = findViewById(R.id.previousImageButton);
         next = findViewById(R.id.nextImageButton);
         finish = findViewById(R.id.finishButton);
-        descriptionViewText.setKeyListener( null );
-        descriptionViewText.setFocusable( false );
+        descriptionViewText.setKeyListener(null);
+        descriptionViewText.setFocusable(false);
         descriptionViewText.setCursorVisible(false);
         movie_genre = getResources().getStringArray(R.array.movie_genre);
         if (getIntent() != null && getIntent().getExtras() != null) {
@@ -111,7 +111,7 @@ public class MovieSort extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("moviesSort","Inside OnPause");
+        Log.d("moviesSort", "Inside OnPause");
         i = 0;
     }
 

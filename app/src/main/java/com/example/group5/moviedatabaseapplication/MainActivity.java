@@ -1,3 +1,8 @@
+/*
+* GROUP 5
+* PARTH MEHTA : 801057625
+* KSHITIJ SHAH : 801077782*/
+
 package com.example.group5.moviedatabaseapplication;
 
 import android.content.DialogInterface;

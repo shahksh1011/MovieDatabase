@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public ArrayList<Movie> movies = new ArrayList<Movie>();
+    public ArrayList<Movie> movies = new ArrayList<>();
 
     private Button addMovie, editMovie, deleteMovie, moviesByYear, moviesByRating;
     static String MOVIES_KEY = "MOVIES";
@@ -60,41 +60,45 @@ public class MainActivity extends AppCompatActivity {
         editMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                adapter = new ArrayAdapter<Movie>(getApplicationContext(), android.R.layout.simple_spinner_item, movies) {
-                    @NonNull
-                    @Override
-                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                        // Cast list view each item as text view
-                        TextView text_view = (TextView) super.getView(position, convertView, parent);
-                        // Set text size
-                        text_view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-                        // Finally, return the modified items
-                        return text_view;
-                    }
-                };
-                adapter.setDropDownViewResource(R.layout.list_row);
-                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d("Hello", movies.get(which).getName());
-                        Intent i = new Intent(getApplicationContext(), AddMovie.class);
-                        i.putExtra("Position", which);
-                        i.putExtra("MOVIES", movies.get(which));
-                        startActivityForResult(i, 3);
-                    }
-                });
-                builder.setTitle("Pick a  Movie");
-                // Create the alert dialog
-                AlertDialog dialog = builder.create();
-                // Get the alert dialog ListView instance
-                ListView listView = dialog.getListView();
-                // Set the divider color of alert dialog list view
-                listView.setDivider(new ColorDrawable(Color.BLUE));
-                // Set the divider height of alert dialog list view
-                listView.setDividerHeight(5);
-                // Finally, display the alert dialog
-                dialog.show();
+                if (movies.size() > 0){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    adapter = new ArrayAdapter<Movie>(getApplicationContext(), android.R.layout.simple_spinner_item, movies) {
+                        @NonNull
+                        @Override
+                        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                            // Cast list view each item as text view
+                            TextView text_view = (TextView) super.getView(position, convertView, parent);
+                            // Set text size
+                            text_view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+                            // Finally, return the modified items
+                            return text_view;
+                        }
+                    };
+                    adapter.setDropDownViewResource(R.layout.list_row);
+                    builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Log.d("Hello", movies.get(which).getName());
+                            Intent i = new Intent(getApplicationContext(), AddMovie.class);
+                            i.putExtra("Position", which);
+                            i.putExtra("MOVIES", movies.get(which));
+                            startActivityForResult(i, 3);
+                        }
+                    });
+                    builder.setTitle("Pick a  Movie");
+                    // Create the alert dialog
+                    AlertDialog dialog = builder.create();
+                    // Get the alert dialog ListView instance
+                    ListView listView = dialog.getListView();
+                    // Set the divider color of alert dialog list view
+                    listView.setDivider(new ColorDrawable(Color.BLUE));
+                    // Set the divider height of alert dialog list view
+                    listView.setDividerHeight(5);
+                    // Finally, display the alert dialog
+                    dialog.show();
+                }else{
+                    Toast.makeText(v.getContext(), "No Movie present in the database!", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -131,38 +135,42 @@ public class MainActivity extends AppCompatActivity {
         deleteMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                adapter = new ArrayAdapter<Movie>(getApplicationContext(), android.R.layout.simple_spinner_item, movies) {
-                    @NonNull
-                    @Override
-                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                        // Cast list view each item as text view
-                        TextView text_view = (TextView) super.getView(position, convertView, parent);
-                        // Set text size
-                        text_view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-                        // Finally, return the modified items
-                        return text_view;
-                    }
-                };
-                adapter.setDropDownViewResource(R.layout.list_row);
-                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d("Delete", movies.get(which).getName());
-                        movies.remove(which);
-                    }
-                });
-                builder.setTitle("Pick a  Movie");
-                // Create the alert dialog
-                AlertDialog dialog = builder.create();
-                // Get the alert dialog ListView instance
-                ListView listView = dialog.getListView();
-                // Set the divider color of alert dialog list view
-                listView.setDivider(new ColorDrawable(Color.BLUE));
-                // Set the divider height of alert dialog list view
-                listView.setDividerHeight(5);
-                // Finally, display the alert dialog
-                dialog.show();
+                if (movies.size()>0){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    adapter = new ArrayAdapter<Movie>(getApplicationContext(), android.R.layout.simple_spinner_item, movies) {
+                        @NonNull
+                        @Override
+                        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                            // Cast list view each item as text view
+                            TextView text_view = (TextView) super.getView(position, convertView, parent);
+                            // Set text size
+                            text_view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+                            // Finally, return the modified items
+                            return text_view;
+                        }
+                    };
+                    adapter.setDropDownViewResource(R.layout.list_row);
+                    builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Log.d("Delete", movies.get(which).getName());
+                            movies.remove(which);
+                        }
+                    });
+                    builder.setTitle("Pick a  Movie");
+                    // Create the alert dialog
+                    AlertDialog dialog = builder.create();
+                    // Get the alert dialog ListView instance
+                    ListView listView = dialog.getListView();
+                    // Set the divider color of alert dialog list view
+                    listView.setDivider(new ColorDrawable(Color.BLUE));
+                    // Set the divider height of alert dialog list view
+                    listView.setDividerHeight(5);
+                    // Finally, display the alert dialog
+                    dialog.show();
+                }else {
+                    Toast.makeText(v.getContext(), "No Movie present in the database!", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -174,12 +182,10 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == 2) {
             if (data.getExtras() != null) {
                 movies.add((Movie) data.getExtras().get("MOVIES"));
-                Log.d("hellp", "hellp");
             }
         } else if (resultCode == 3) {
             if (data.getExtras() != null) {
                 Movie answer = (Movie) data.getExtras().get("MOVIES");
-                Log.d("hellpp", answer.getName());
                 movies.get(data.getExtras().getInt("Position")).setName(answer.getName());
                 movies.get(data.getExtras().getInt("Position")).setMovieYear(answer.getMovieYear());
                 movies.get(data.getExtras().getInt("Position")).setMovieRating(answer.getMovieRating());

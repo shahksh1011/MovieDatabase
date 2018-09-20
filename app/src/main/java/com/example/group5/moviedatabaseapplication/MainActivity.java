@@ -191,4 +191,5 @@ public class MainActivity extends AppCompatActivity {
         getIntent().removeExtra("MOVIES");
         getIntent().removeExtra("Position");
     }
+
 }
